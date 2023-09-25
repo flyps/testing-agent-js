@@ -20,7 +20,7 @@ describe("jest baserun tests", () => {
       userInput: "who won the 2022 nobel price in physics"
     })
 
-    baserun.evals.includes("OpenAI Non-Streaming", result, ["Zeilinger"])
+    baserun.evals.includes("OpenAI Streaming", result, ["Zeilinger"])
   })
 
   it("handles anthropic non streaming", async () => {
@@ -30,7 +30,7 @@ describe("jest baserun tests", () => {
       userInput: "who won the 2022 nobel price in physics"
     })
 
-    baserun.evals.includes("OpenAI Non-Streaming", result, ["Zeilinger"])
+    baserun.evals.includes("Anthropic Non-Streaming", result, ["Zeilinger"])
   })
 
   it("handles anthropic streaming", async () => {
@@ -40,6 +40,6 @@ describe("jest baserun tests", () => {
       userInput: "who won the 2022 nobel price in physics"
     })
 
-    baserun.evals.includes("OpenAI Non-Streaming", result, ["Zeilinger"])
+    baserun.evals.includes("Anthropic Streaming", result, ["Zeilinger"])
   })
 })
