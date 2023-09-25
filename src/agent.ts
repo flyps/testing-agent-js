@@ -40,7 +40,8 @@ export async function run({provider = Provider.OpenAI, userInput = "", useStream
   }
 
   const executor = await initializeAgentExecutorWithOptions(tools, llm, {
-    agentType: "chat-zero-shot-react-description",
+    agentType: "zero-shot-react-description",
+    verbose: true,
   })
   const result = await executor.run(userInput)
   console.log(result)

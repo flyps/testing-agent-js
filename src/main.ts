@@ -1,12 +1,12 @@
 import {baserun} from 'baserun'
 import * as dotenv from 'dotenv'
+
+dotenv.config()
+baserun.init()
+
 import {run} from "./agent";
 
 function main() {
-  dotenv.config()
-
-  baserun.init()
-
   const userInput = process.argv[process.argv.length - 1];
   if (userInput !== __filename) {
     void baserun.trace(run)({userInput});
