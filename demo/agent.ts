@@ -4,15 +4,11 @@ import { ConsoleCallbackHandler } from "langchain/callbacks"
 import { SerpAPI, WikipediaQueryRun} from "langchain/tools";
 import {Calculator} from "langchain/tools/calculator";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
-import * as dotenv from 'dotenv'
 import * as readline from "node:readline/promises";
 import { stdin, stdout } from 'node:process'
 import { baserun } from 'baserun'
+import {Provider} from "./constants";
 
-enum Provider {
-  OpenAI = "openai",
-  Anthropic = "anthropic",
-}
 
 function chooseLLM({provider, useStreaming}: {provider: Provider, useStreaming: boolean}) {
   switch (provider) {
@@ -30,7 +26,7 @@ function chooseLLM({provider, useStreaming}: {provider: Provider, useStreaming: 
   }
 }
 
-async function run({provider = Provider.OpenAI, userInput = "", useStreaming = false}: {provider?: Provider, userInput?: string, useStreaming?: boolean} = {}) {
+export async function run({provider = Provider.OpenAI, userInput = "", useStreaming = false}: {provider?: Provider, userInput?: string, useStreaming?: boolean} = {}){
   if (!userInput) {
     const rl = readline.createInterface({input: stdin, output: stdout})
     userInput = await rl.question("What would you like me to do?\n> ")
@@ -43,23 +39,8 @@ async function run({provider = Provider.OpenAI, userInput = "", useStreaming = f
     tools.push(new SerpAPI())
   }
 
-  const executor = await initializeAgentExecutorWithOptions(tools, llm, { agentType: "openai-functions", verbose: true})
+  const executor = await initializeAgentExecutorWithOptions(tools, llm)
   const result = await executor.run(userInput)
   baserun.log(`${provider} - ${useStreaming}`, {"input": userInput, "result": result})
   return result
 }
-
-function main() {
-  dotenv.config()
-
-  baserun.init()
-
-  const userInput = process.argv[process.argv.length - 1];
-  if (userInput !== __filename) {
-    void baserun.trace(run)({userInput});
-  } else {
-    void baserun.trace(run)();
-  }
-}
-
-main()
