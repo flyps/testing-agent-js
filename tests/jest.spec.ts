@@ -1,6 +1,6 @@
 import { baserun } from 'baserun';
-import {run} from "../demo/agent";
-import {Provider} from "../demo/constants";
+import {run} from "../src/agent";
+import {Provider} from "../src/constants";
 
 describe("jest baserun tests", () => {
   it('handles openai non streaming', async () => {

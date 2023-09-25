@@ -13,13 +13,13 @@ $ npm install
 ### Execute the main.py script
 
 ```bash
-$ ts-node demo/main.ts
+$ ts-node src/main.ts
 ```
 
 If passed without arguments it will prompt you for a task. You can pass an argument for the task if you wish:
 
 ```bash
-ts-node demo/main.ts "tell me the capital of the united states"
+ts-node src/main.ts "tell me the capital of the united states"
 ```
 
 ### It will prompt you for what you want to do
@@ -38,7 +38,7 @@ After you provide input you can sit back and watch it accomplish its task.
 Sign up for Datadog, install a Datadog agent locally, and then run with `ddtrace-run`:
 
 ```bash
-DD_API_KEY=MY_API_KEY DD_OPENAI_LOGS_ENABLED=1 poetry run ddtrace-run python demo/main.py
+DD_API_KEY=MY_API_KEY DD_OPENAI_LOGS_ENABLED=1 poetry run ddtrace-run python src/main.py
 ```
 
 Then look at APM: https://us5.datadoghq.com/apm/traces

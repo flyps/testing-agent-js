@@ -39,8 +39,11 @@ export async function run({provider = Provider.OpenAI, userInput = "", useStream
     tools.push(new SerpAPI())
   }
 
-  const executor = await initializeAgentExecutorWithOptions(tools, llm)
+  const executor = await initializeAgentExecutorWithOptions(tools, llm, {
+    agentType: "chat-zero-shot-react-description",
+  })
   const result = await executor.run(userInput)
+  console.log(result)
   baserun.log(`${provider} - ${useStreaming}`, {"input": userInput, "result": result})
   return result
 }
