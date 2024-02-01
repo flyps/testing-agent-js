@@ -1,44 +1,24 @@
-# Baserun demo
+# Baserun demos
 
-This is a small app that uses LangChain to demonstrate Baserun.
+This is a collection of applications that demonstrate how Baserun is used.
 
-## Walkthrough
+## Getting started
 
-### Setup
+1. Clone this repo
+2. `npm install`
+3. Create a .env file with at least two environment variables: `BASERUN_API_KEY` and `OPENAI_API_KEY`
 
+## Autonomous Agent
+
+In the `agent/` directory there is a basic autonomous agent built using langchain. To execute, run:
 ```bash
-$ npm install
+ts-node src/agent/main.ts
 ```
 
-### Execute the main.py script
+## Chatbot
 
+In the `chatbot/` module there is a basic implementation of a customer service chatbot. To execute,
+run:
 ```bash
-$ ts-node src/main.ts
+ts-node src/chatbot/main.ts
 ```
-
-If passed without arguments it will prompt you for a task. You can pass an argument for the task if you wish:
-
-```bash
-ts-node src/main.ts "tell me the capital of the united states"
-```
-
-### It will prompt you for what you want to do
-
-```
-What would you like me to do?
-> Tell me the capital of the united states
-```
-
-## After this step everything is automatic
-
-After you provide input you can sit back and watch it accomplish its task.
-
-## Datadog
-
-Sign up for Datadog, install a Datadog agent locally, and then run with `ddtrace-run`:
-
-```bash
-DD_API_KEY=MY_API_KEY DD_OPENAI_LOGS_ENABLED=1 poetry run ddtrace-run python src/main.py
-```
-
-Then look at APM: https://us5.datadoghq.com/apm/traces

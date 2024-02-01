@@ -1,4 +1,4 @@
 export enum Provider {
-  OpenAI = "openai",
-  Anthropic = "anthropic",
+    OpenAI = "openai",
+    Anthropic = "anthropic",
 }
