@@ -1,5 +1,5 @@
 import { baserun } from 'baserun';
-import {run} from "../src/agent";
+import {run} from "../src/agent/agent";
 import {Provider} from "../src/constants";
 
 describe("jest baserun tests", () => {
